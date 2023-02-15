@@ -1,0 +1,13 @@
+.Back {
+    font-size: 16px;
+    float: right;
+    margin-top: 25px;
+}
+
+#FAQ4img {
+    margin: 0px auto 10px auto;
+    width: 100%;
+    height: 1080px;
+    background: url(../img/FAQ4img.png)
+    no-repeat center center;
+}

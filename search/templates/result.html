@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Result</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+
+	<!-- Font Awesome -->
+	<link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- Animation -->
+	<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+
+    <!-- MyTemplate CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'css/result.css' %}" rel="stylesheet">
+
+	<!-- Core JavaScript Files -->
+	<script src="{%static 'js/jquery.min.js' %}" type="text/javascript"></script>
+	<script src="{%static 'js/jquery.table2excel.js' %}" type="text/javascript"></script>
+	<script src="{%static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+	<script src="{%static 'js/jquery.easing.min.js' %}" type="text/javascript"></script>
+	<script src="{%static 'js/jquery.scrollTo.js' %}" type="text/javascript"></script>
+	<script src="{%static 'js/wow.min.js' %}" type="text/javascript"></script>
+	<script src="{%static 'js/custom.js' %}" type="text/javascript"></script>
+	<script src="{%static 'js/highcharts/highcharts.js' %}" type="text/javascript"></script>
+	<script src="{%static 'js/highcharts/highcharts-more.js' %}" type="text/javascript"></script>
+	<script src="{%static 'js/highcharts/modules/exporting.js' %}" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+	<header id="header-banner">
+		<nav class="navbar navbar-default navbar-fixed-top fadeIn" role="navigation">
+			<div class="container">
+
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dropdown-box-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="navbar-brand">
+						<a href="#">RESULT</a>
+					</div>
+				</div>
+
+				<!-- Collect the nav links and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-right" id="dropdown-box-1">
+					<ul class="nav navbar-nav">
+						<li><a href="/OmicHorizonExpression/search/">Home</a></li>
+						<li><a href="/OmicHorizonExpression/update/">Update</a></li>
+						<li><a href="/OmicHorizonExpression/contact/">Contact</a></li>
+						<li><a href="/OmicHorizonExpression/FAQ/">FAQ</a></li>
+						<li><a href="http://immudb.bjmu.edu.cn/" target="_blank">ImmuDB</a></li>
+					</ul>
+				</div>
+			</div> <!-- /.container -->
+		</nav> <!-- /.nav -->
+	</header>
+
+	<!-- banner -->
+    <section class="banner" id="home">
+
+    </section>
+	<!-- /.banner -->
+
+	<!-- aboutus -->
+    <section class="aboutus" id="aboutus">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div>
+						<h2>GENE SYMBOL: {{ gene_symbol }}</h2>
+					</div>
+					<div class="mainContent" style="margin-left:60px;margin-top:-16px;">
+						<div class="col-sm-7">
+						<p style="line-height:1em;">
+							<strong>Description: </strong>
+							{% if gene_description %}
+								{{ gene_description }}
+							{% else %}
+								<strong style="color:red;"></strong>
+							{% endif %}
+						</p>
+						<p style="line-height:1em;">
+							<strong>Gene Synonym: </strong>
+							{% if gene_synonym %}
+								{{ gene_synonym }}
+							{% else %}
+								<strong style="color:red;"></strong>
+							{% endif %}
+						</p>
+						<p style="line-height:1em;">
+							<strong>Ensemble gene ID: </strong>
+							<a href="https://asia.ensembl.org/Rattus_norvegicus/Gene/Summary?db=core;g={{ Ensemble_gene_id }}" target="_blank">
+								{{ Ensemble_gene_id }}
+							</a>
+						</p>
+						<p style="line-height:1em;">
+							<strong>NCBI gene ID: </strong>
+							{% if NCBI_gene_id %}
+								<a href="https://www.ncbi.nlm.nih.gov/gene/{{ NCBI_gene_id }}" target="_blank">
+									{{ NCBI_gene_id }}
+								</a>
+							{% else %}
+								<strong style="color:red;"></strong>
+							{% endif %}
+						</p>
+						<p style="line-height:1em;">
+							<strong>NCBI gene biotype: </strong>
+							{% if NCBI_gene_biotype %}
+								{{ NCBI_gene_biotype }}
+							{% else %}
+								<strong style="color:red;"></strong>
+							{% endif %}
+						</p>
+					</div>
+						<div class="col-sm-5">
+						<p style="line-height:1em;">
+							<strong>Chromosome: </strong>
+							{% if chromosome %}
+								{{ chromosome }}
+							{% else %}
+								<strong style="color:red;">No description</strong>
+							{% endif %}
+						</p>
+						<p style="line-height:1em;">
+							<strong>Map location: </strong>
+							{% if map_location %}
+								{{ map_location }}
+							{% else %}
+								<strong style="color:red;">No description</strong>
+							{% endif %}
+						</p>
+						<p style="line-height:1em;">
+							<strong>Chromosome localization: </strong>
+							{% if chromosome_localization %}
+								{{ chromosome_localization }}
+							{% else %}
+								<strong style="color:red;">No description</strong>
+							{% endif %}
+						</p>
+						<p style="line-height:1em;">
+							<strong>Strand: </strong>
+							{% if strand %}
+								{{ strand }}
+							{% else %}
+								<strong style="color:red;">No description</strong>
+							{% endif %}
+						</p>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /.aboutus -->
+
+	<!-- services -->
+    <section class="services" id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div>
+					<h2 id="ExpressionValue">EXPRESSION PROFILE</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:-40px;">
+					<h2 style="font-size:24px;padding-top:10px;padding-bottom:10px;background-color:rgb(55, 135, 220, 0.9);color:#fff;padding-left:20px;">Chart</h2>
+					<div id="main" style="width:100%;height:800px;float:left;"></div>
+					<h2 style="font-size:24px;margin-top:600px;;padding-top:10px;padding-bottom:10px;background-color:rgb(55, 135, 220, 0.9);color:#fff;padding-left:20px;">Table</h2>
+					<div id="mainLegend" style="width:100%;float:left;overflow:auto;">
+						<button id="tableBtn" class="downloadBtn">Download Table</button>
+						<table id="valueTable" border="1" width="100%" style="table-layout:fixed;overflow:auto;">
+							<tr>
+								<th width="150px" height="30px">Category</th>
+								<th width="150px" align="left">Tissue / Cell Type</th>
+								<th width="150px" align="left">Subtissue / Tissue Source</th>
+								<th width="150px" align="left">Median Value</th>
+								<th width="400px" align="left">Expression Value</th>
+							</tr>
+							{% for legend in tableLegends %}
+								<tr>
+									<td height="30px" align="left">{{ legend.legendType }}</td>
+									<td style="word-break:break-all" align="left">{{ legend.legendsubType }}</td>
+									{% if legend.legendfinalType %}
+										<td style="word-break:break-all" align="left">{{ legend.legendfinalType }}</td>
+									{% else %}
+										<td style="word-break:break-all" align="left">NA</td>
+									{% endif %}
+									<td style="word-break:break-all" align="left">{{ legend.medianValue }}</td>
+									<td style="overflow:hidden;text-overflow:ellipsis" align="left">{{ legend.legendValue }}</td>
+								</tr>
+							{% endfor %}
+						</table>
+					</div>
+					<script>
+						$("#tableBtn").click(function(){
+							$("#valueTable").table2excel({
+								exclude: ".noExl",
+								name: "Excel Document Name",
+								filename: "Expression Value",
+								exclude_img: true,
+								exclude_links: true,
+								exclude_inputs: true
+							});
+						});
+					</script>
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /.services -->
+
+	<!-- footer -->
+	<footer id="section-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12">
+					<div class="wow fadeIn" data-wow-delay="0.4s">
+						<div class="btn-circle-scroll">
+							<a href="#header-banner" class="btn-circle">
+								<i class="fa fa-angle-double-up animated"></i>
+							</a>
+						</div>
+					</div>
+					<p>All Rights Reserved. Department of Immunology, Peking University Health Science Center.</p>
+					<p>Designed by Department of Natural Science in Medicine, Peking University Health Science Center.</p>
+					<p>Supported by Information and Communication Center, Peking University Health Science Center</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- /.footer -->
+</body>
+	<script type="text/javascript">
+		var plotLegends = {{ plotLegends|safe }};
+		var plotColors = {{ plotColors|safe }};
+		var legendColors = {{ legendColors|safe }};
+		var chart = Highcharts.chart('main', {
+			chart: {
+				type: 'boxplot',
+				plotBorderColor: '#000',
+				plotBorderWidth: 2,
+				spacingBottom: 50,
+				spacingTop: 10,
+				spacingLeft: 150,
+				spacingRight: 100
+			},
+			credits: {
+				enabled: false
+			},
+			title: {
+				text: '{{ gene_symbol }} gene expression from OmicHorizon@Expression'
+			},
+			legend: {
+				enabled: false
+			},
+			exporting: {
+				sourceHeight: 1080,
+				sourceWidth: 1920
+			},
+			xAxis: {
+				lineColor: '#000',
+				lineWidth: 1,
+				categories: plotLegends,
+				tickPosition: 'outside',
+				tickmarkPlacement: 'on',
+				tickColor: '#000',
+				tickWidth: 2,
+				labels: {
+					formatter: function () {
+						for(var i = 0; i < plotLegends.length; i++) {
+						if(this.value == plotLegends[i])
+							return '<span style="fill: ' + legendColors[this.value] +  ';">' + this.value + '</span>';
+						}
+					},
+					step: {{ stepSize|safe }},
+					rotation: -25,
+					style: {
+						colorByPoint: true,
+						colors: plotColors,
+						fontSize: '12px',
+						textOverflow: 'none',
+						whiteSpace: 'nowrap',
+						fontFamily: '微软雅黑',
+						fontWeight: 'bold'
+					}
+				},
+				title: {
+					text: ''
+				}
+			},
+			yAxis: {
+				min: -1,
+				showFirstLabel: false,
+				lineColor: '#000',
+				lineWidth: 1,
+				gridLineWidth: 0,
+				minorGridLineWidth: 0,
+				tickPosition: 'outside',
+				tickColor: '#000',
+				tickWidth: 2,
+				title: {
+					text: 'TPM value',
+					style: {
+						fontSize: '16px',
+						fontFamily: '微软雅黑',
+						fontWeight: 'bold'
+					}
+				}
+			},
+			plotOptions: {
+				boxplot: {
+					fillColor: null,
+					colorByPoint: true,
+					colors: plotColors,
+					lineWidth: 2,
+					medianColor: '#000',
+					medianWidth: 2,
+					stemColor: '#7E8B92',
+					stemDashStyle: 'solid',
+					stemWidth: 1,
+					whiskerColor: '#7E8B92',
+					whiskerLength: '80%',
+					whiskerWidth: 1,
+					grouping: false,
+				}
+			},
+			tooltip: {
+				pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {series.name}</b><br/>' + // eslint-disable-line no-dupe-keys
+				'Upper extreme: {point.high}<br/>' +
+				'Upper quartile: {point.q3}<br/>' +
+				'Median: {point.median}<br/>' +
+				'Lower quartile: {point.q1}<br/>' +
+				'Lower extreme: {point.low}<br/>'
+			},
+			series: [{
+				name: 'data',
+				data: {{ values }},
+				tooltip: {
+					headerFormat: '<em>{point.key}</em><br/>'
+				}
+			}, {
+				name: 'observed value',
+				color: Highcharts.getOptions().colors[0],
+				type: 'scatter',
+				data: {{ abnormalValue|safe }},
+				stickyTracking: false,
+				marker: {
+					fillColor: 'white',
+					lineWidth: 1,
+					radius: 3,
+					lineColor: Highcharts.getOptions().colors[0]
+				},
+				tooltip: {
+					headerFormat: '<em>{point.key}</em><br/>',
+					pointFormat: '{point.y}'
+				}
+			}]
+		});
+	</script>
+</html>
